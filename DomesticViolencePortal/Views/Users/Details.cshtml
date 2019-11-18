@@ -1,0 +1,84 @@
+﻿@model DomesticViolencePortal.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="hero-wrap" style="background-image: url('/Content/images/adminpage.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+            <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><li class="nav-item"><a href="/Account/PersonalCabinet" class="nav-link">Главная</a></li></span> </p>
+                <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Админ Панель</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+
+    <h2>Детали</h2>
+    <p>
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.UserId }) |
+        @Html.ActionLink("Вернуться к списку", "Index")
+    </p>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Login.UserLogin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login.UserLogin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.RoleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.UserId }) |
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>

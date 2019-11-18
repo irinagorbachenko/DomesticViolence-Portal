@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DomesticViolencePortal.Models.Comment>
+
+<div class="pt-5 mt-5">
+    <h3 class="mb-5">Количество комментариев к этому посту @Model.ToList().Count</h3>
+    <ul class="comment-list">
+        @foreach (var item in Model)
+        {
+
+            <li class="comment">
+                <div class="vcard bio">
+                    <img src="@item.User.Image" alt="Image placeholder">
+                </div>
+                <div class="comment-body">
+                    <h3> @item.User.FirstName</h3>
+
+                    <div class="meta">@Html.DisplayFor(modelItem => item.Date)</div>
+                    <p>@Html.DisplayFor(modelItem => item.Text)</p>
+                    
+                </div>
+
+            </li>
+
+
+            if (this.Session["IsAdmin"] != null && (bool)this.Session["IsAdmin"] == true)
+            {
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.CommentId }) |
+                    @Html.ActionLink("Подробнее", "Details", new { id = item.CommentId }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.CommentId })
+                </td>
+
+
+            }
+
+
+
+        }
+        <!-- END comment-list -->
+
+    </ul>
+</div>
+
+
+
+
+
+
+
+<!-- END comment-list -->

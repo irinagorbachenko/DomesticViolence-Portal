@@ -1,0 +1,115 @@
+﻿@model DomesticViolencePortal.Models.Donation
+
+@{
+     Layout = "~/Views/Shared/_Layout.cshtml"; ;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+ 
+</head>
+<body>
+
+
+<div class="hero-wrap" style="background-image: url('/Content/images/donation.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+            <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><li class="nav-item"><a href="/Home/Index" class="nav-link">Главная</a></li></span> </p>
+                <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Помочь</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Create", "Donations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div id="Help" class="form-horizontal">
+    <h4>Помочь</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+  @if (Session["IsAuth"]!=null&&(bool) Session["IsAuth"])
+    {
+        <div class="form-group">
+
+            <div class="col-xs-6">
+                <label for="FirstName"><h4>Имя</h4></label>
+                <input type="text" value="@(((string) this.Session["CurrentUserName"]))" class="form-control" name="FirstName" id="FirstName" placeholder="FirstName" title="Имя.">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+
+            <div class="col-xs-6">
+                <label for="FirstName"><h4>Фамилия</h4></label>
+                <input type="text" value="@(((string) this.Session["CurrentUserLastName"]))" class="form-control" name="LastName" id="LastName" placeholder="LastName" title="Фамилия">
+            </div>
+        </div>
+
+
+
+        @*<div class="editor-field">
+            <input type="file" name="uploadImage" />
+        </div>*@
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Theme, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Theme, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Theme, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Создать запись" class="btn btn-default" />
+            </div>
+        </div>
+
+    }
+
+  
+</div>
+ 
+}
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>
+
+</body>
+</html>

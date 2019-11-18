@@ -1,0 +1,92 @@
+﻿@model IEnumerable<DomesticViolencePortal.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Пользователи</title>
+</head>
+
+    <div class="hero-wrap" style="background-image: url('/Content/images/adminpage.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><li class="nav-item"><a href="/Account/PersonalCabinet" class="nav-link">Главная</a></li></span> </p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Админ Панель</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <p>
+        @Html.ActionLink("Создать нового пользователя", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Login.UserLogin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model=> model.Login.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role.RoleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login.UserLogin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.UserId }) |
+                @Html.ActionLink("Просмотреть полностью", "Details", new { id = item.UserId }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.UserId })
+            </td>
+        </tr>
+        }
+
+    </table>

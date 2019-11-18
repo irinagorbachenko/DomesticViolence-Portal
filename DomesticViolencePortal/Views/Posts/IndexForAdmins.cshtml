@@ -1,0 +1,82 @@
+﻿@model IEnumerable<DomesticViolencePortal.Models.Post>
+
+@{
+    ViewBag.Title = "IndexForAdmins";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Пользователи</title>
+</head>
+
+<div class="hero-wrap" style="background-image: url('/Content/images/adminpage.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+            <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><li class="nav-item"><a href="/Account/PersonalCabinet" class="nav-link">Главная</a></li></span> </p>
+                <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Админ Панель</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<html>
+
+<body>
+<p>
+    @Html.ActionLink("Создать пост ", "CreateForAdmins")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "EditForAdmins", new { id=item.PostId }) |
+                @Html.ActionLink("Детали", "DetailsForAdmins", new { id=item.PostId }) |
+                @Html.ActionLink("Удалить", "DeleteForAdmins", new { id=item.PostId })
+            </td>
+        </tr>
+    }
+    
+</table>
+</body>
+</html>

@@ -1,0 +1,81 @@
+﻿@model List<String>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body>
+    <div class="hero-wrap" style="background-image: url('/Content/images/bg_12.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><li class="nav-item"><a href="/Home/Index" class="nav-link">Главная</a></li></span> </p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Галерея</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (this.Session["IsAdmin"] != null && (bool)this.Session["IsAdmin"] == true)
+    {
+
+        using (Html.BeginForm("UpoladPictures", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="editor-field">
+                <p>Загрузить фото</p>
+                <input type="file" name="uploadImage" />
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Добавить" class="btn btn-default" />
+                </div>
+            </div>
+
+        }
+
+       
+    }
+
+    <section class="ftco-gallery" style="margin-top:80px; margin-bottom:160px;">
+        @*Carussel*@
+
+    @for (int i = 0; i < Model.Count;)
+    {
+        <div class="d-md-flex">
+            @*row*@
+        @for (int j = 0; j < 4 && i < Model.Count; j++, i++)
+        {
+            <a href="@Model[i]" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" style="background-image: url(@Model[i]);margin:15px">
+                <div class="icon d-flex justify-content-center align-items-center">
+                  
+                    <span title="Close (Esc)" style="z-index: 100000;" class="mfp-close" attributtes="@Model[i]">×</span>
+                </div>
+            </a>
+        }
+    </div>
+}
+
+
+
+</body>
+<script type = "text/javascript" >
+    {
+        let close1 = document.getElementsByClassName("mfp-close");
+        for (let i = 0; i < close1.length; i++) {
+
+
+            close1[i].onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                let a = e.currentTarget.getAttribute("class");
+                let galleryPath = e.currentTarget.getAttribute("attributtes");
+                $.post("DeletePictures", { filePath: galleryPath })
+                location.reload();
+            }
+        }
+    }
+
+
+
+
+    </script>

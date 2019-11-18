@@ -1,0 +1,143 @@
+﻿
+@model IEnumerable<DomesticViolencePortal.Models.Donation>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="hero-wrap" style="background-image: url('/Content/images/donation.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><li class="nav-item"><a href="/Home/Index" class="nav-link">Главная</a></li></span> </p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Помочь</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="row">
+        <div class="col-sm-12" style="text-align:center">
+            @Html.ActionLink("Написать о возможности помочь", "Create")
+        </div>
+    </div>
+
+
+   
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row d-flex">
+
+                <div class="row d-flex">
+
+                    @foreach (var item in Model)
+                    {
+
+
+                        <div class="col-md-4 d-flex ftco-animate">
+                            <div class="blog-entry align-self-stretch">
+
+                                <a href="blog-single.html" class="block-20" style="background-image: url('@item.Image');">
+                                </a>
+                                <div class="text p-4 d-block">
+                                    <div class="meta mb-3">
+                                        <div><a href="#">@item.Date</a></div>
+                                        <div><a href="#">@(((string)this.Session["CurrentUserName"])) @(((string)this.Session["CurrentUserLastName"]))</a></div>
+                                        <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                                    </div>
+                                    <h3 class="" heading mt-3">@Html.ActionLink(item.Title, "Details", "Posts", new { id = item.UserId }, null)</h3>
+                                    <p>@item.Text<span>...</span></p>
+                                </div>
+                                <td>
+                                    @Html.ActionLink("Редактировать", "Edit", new { id = item.DonationId })|
+                                    @Html.ActionLink("Комментарии", "Details", new { id = item.DonationId }) |
+                                    @Html.ActionLink("Удалить", "Delete", new { id = item.DonationId })
+                                </td>
+                            </div>
+
+                        </div>
+
+                    }
+
+
+
+
+
+                </div>
+
+                @*@foreach (var item in Model)
+                    {
+                        <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
+                            <div class="blog-entry align-self-stretch">
+
+                                <a href="blog-single.html" class="block-20" style="background-image: url('@item.Image');"></a>
+
+                                <div class="text p-4 d-block">
+                                    <div class="meta mb-3">
+                                        <div><a href="#"> @Html.DisplayFor(modelItem => item.Date) @Html.DisplayFor(modelItem => item.User.LastName)</a></div>
+
+                                        <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                                    </div>
+                                    <h3 class="heading mt-3"><a href="#">@Html.DisplayFor(modelItem => item.Title)</a></h3>
+                                    <p>@Html.DisplayFor(modelItem => @item.Text)<span>...</span></p>
+                                    <div>
+
+
+                                        @Html.ActionLink("Открыть", "Details", new { id = item.PostId })
+
+
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    }*@
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#">&lt;</a></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @* ============================= *@
+
+
+
+
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+﻿@model IEnumerable<DomesticViolencePortal.Models.NeedHelpUser>
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+</head>
+
+    <div class="hero-wrap" style="background-image: url('/Content/images/needhelp.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><li class="nav-item"><a href="/Home/Index" class="nav-link">Главная</a></li></span> </p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Мне нужна помощь!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@if (Session["IsAuth"] == null)
+{
+    <div class="row">
+        <div class="col-sm-12" style="text-align:center">
+            @Html.ActionLink("Чтобы оставить сообщение о помощи -авторизируйтесь на сайте", "Login", "Account")
+        </div>
+    </div>
+}
+else
+{<div class="row">
+     <div class="col-sm-12" style="text-align:center">
+         @Html.ActionLink("Написать о вашей проблеме", "Create")
+     </div>
+ </div> 
+}
+       
+
+   
+    <section class="ftco-section bg-light">
+
+        <div class="container">
+
+           
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
+                            <div class="staff">
+
+                                <div class="d-flex mb-4">
+                                    <div class="img" style="background-image: url('@item.Image');"></div>
+                                    <div class="info ml-4">
+                                        <h3><a href="teacher-single.html">@Html.DisplayFor(modelItem => item.FirstName)</a></h3>
+                                        <div class="text">
+                                            <p> <span>@Html.DisplayFor(modelItem => item.Title)</span> </p>
+                                        </div>
+
+
+                                    </div>
+                                    @Html.ActionLink("Открыть", "Details", new {id = item.NeedHelpUserId})
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            
+
+
+            <section class="ftco-counter ftco-intro" id="section-counter" style="padding-bottom: 50px;padding-top: 100px;">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-md-5 d-flex justify-content-center counter-wrap ftco-animate">
+                            <div class="block-18 color-1 align-items-stretch">
+                                <div class="text">
+                                    <span>Приблизительное число пострадавших женщин </span>
+                                    <strong class="number" data-number="50000">0</strong>
+                                    <span>в мире за 2018 год</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                            <div class="block-18 color-2 align-items-stretch">
+                                <div class="text">
+                                    <h3 class="mb-4">Пожертвования</h3>
+                                    <p>Ваше соучастие -поможет спасти чью то жизнь</p>
+                                    <p><a href="/Donations/Create/#Help" class="btn btn-white px-3 py-2 mt-2">Помочь</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                            <div class="block-18 color-3 align-items-stretch">
+                                <div class="text">
+                                    <h3 class="mb-4">Стать Волонтером</h3>
+                                    <p>Ваше Волонтерство- это надежда жертв насилия,которую можно превратить в жизнь общими усилиями. </p>
+                                    <p><a href="/Home/Index/#volonteer" class="btn btn-white px-3 py-2 mt-2">Стать Волонтером</a></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+
+
+
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <ul>
+                            <li><a href="#">&lt;</a></li>
+                            <li class="active"><span>1</span></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&gt;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    @Styles.Render("~/Content/css")
+
+@Scripts.Render("~/bundles/modernizr")   
+
+
+  
+  

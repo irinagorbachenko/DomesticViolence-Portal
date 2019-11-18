@@ -1,0 +1,52 @@
+﻿@model IEnumerable<DomesticViolencePortal.Models.Volonteer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Таблица пользователей</h2>
+
+
+    @Html.ActionLink("Создать нововго волонтера", "Create")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.VolonteerId }) |
+            @Html.ActionLink("Детали", "Details", new { id=item.VolonteerId }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.VolonteerId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,148 @@
+﻿
+@model DomesticViolencePortal.Models.Question
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<body>
+    <div class="hero-wrap" style="background-image: url('/Content/images/bg_12.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+                <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                    <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><li class="nav-item"><a href="/Home/Index" class="nav-link">Главная</a></li></span> </p>
+                    <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Наши Контакты</h1>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <section class="ftco-section contact-section ftco-degree-bg">
+        <div class="container">
+            <div class="row d-flex mb-5 contact-info">
+                <div class="col-md-12 mb-4">
+                    <h2 class="h4">Наши Контакты</h2>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-md-3">
+                    <p><span>Адрес:</span> 203 проспект Радомный , Харьков,Харьковская область,Украина</p>
+                </div>
+                <div class="col-md-3">
+                    <p><span>Телефон:</span> <a href="Телефон://1234567920">+ 1235 2355 98</a></p>
+                </div>
+                <div class="col-md-3">
+                    <p><span>Почта:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                </div>
+                <div class="col-md-3">
+                    <p><span>Наш сайт:</span> <a href="#">yoursite.com</a></p>
+                </div>
+            </div>
+            <div class="row block-9">
+                <div class="col-md-6 pr-md-5">
+                    <h4 class="mb-4">Хотите задать вопрос?</h4>
+                    @using (Html.BeginForm("CreateQuestion", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        if (this.Session["IsAuth"] != null && (bool)this.Session["IsAuth"] == true)
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.UserId)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Отправить сообщение" class="btn btn-primary py-3 px-5">
+                            </div>
+                        }
+                        if (this.Session["IsAuth"] == null)
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Отправить сообщение" class="btn btn-primary py-3 px-5">
+                            </div>
+                        }
+                    }
+
+                </div>
+
+                <style>
+                    #map {
+                        height: 400px;
+                        width: 40%;
+                        position: relative;
+                    }
+                </style>
+
+
+                
+                <div id="map"></div>
+                <script>
+                    function initMap() {
+                        var RazorviKrug = { lat: 49.9706791, lng: 36.0767784 };
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 7,
+                            center: RazorviKrug
+                        });
+                        var marker = new google.maps.Marker({
+                            position: RazorviKrug,
+                            map: map,
+                            title: "проспект Льва Ландау, 48,Разорви круг"
+                        });
+                    }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfT42h0t-cOM8LZNweoD7BrLvpZtAA_r0&callback=initMap">
+                </script>
+
+
+
+                @*<div class="col-md-6" id="map"></div>*@
+            </div>
+
+        </div>
+    </section>
+</body>
+    
+    
+
+       
+
+
+
+
+
+
+
+
+
+<

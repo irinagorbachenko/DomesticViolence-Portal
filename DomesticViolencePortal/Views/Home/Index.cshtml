@@ -1,0 +1,250 @@
+﻿@model DomesticViolencePortal.Models.ViewModels.HomeIndexViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="hero-wrap" style="background-image: url('/Content/images/bg_9.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+            <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Молчать-это не выход!</h1>
+            
+             <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="/Content/video/socialviolence.mp4" type='video/ogg; codecs="theora, vorbis"' class="btn btn-white btn-outline-white px-4 py-3 popup-vimeo"><span class="icon-play mr-2"></span>Смотреть Видео</a></p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-counter ftco-intro" id="section-counter">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-5 d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 color-1 align-items-stretch">
+                    <div class="text">
+                        <span>Приблизительное число пострадавших женщин </span>
+                        <strong class="number" data-number="50000">0</strong>
+                        <span>в мире за 2018 год</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 color-2 align-items-stretch">
+                    <div class="text">
+                        <h3 class="mb-4">Пожертвования</h3>
+                        <p>Ваше соучастие -поможет спасти чью то жизнь</p>
+                        <p><a href="/Donations/Index/#help" class="btn btn-white px-3 py-2 mt-2">Помочь</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                <div class="block-18 color-3 align-items-stretch">
+                    <div class="text">
+                        <h3 class="mb-4">Стать Волонтером</h3>
+                        <p>Ваше Волонтерство- это надежда жертв насилия,которую можно превратить в жизнь общими усилиями. </p>
+                        <p><a href="#volonteer" class="btn btn-white px-3 py-2 mt-2">Стать Волонтером</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 d-flex services p-3 py-4 d-block">
+                    <div class="icon d-flex mb-3"><span class="flaticon-donation-1"></span></div>
+                    <div class="media-body pl-4">
+                        <h3 class="heading">Пожертвования</h3>
+                        <p>Пострадавшим нужны разные виды помощи: временный кров, одежда, питание, детские вещи.<p>
+                        <p Если у Вас есть возможность оказать любую помощь-Оставляйте сообщения.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 d-flex services p-3 py-4 d-block">
+                    <div class="icon d-flex mb-3"><span class="flaticon-charity"></span></div>
+                    <div class="media-body pl-4">
+                        <h3 class="heading">Стать Волонтером</h3>
+                        <p>Иногда подержать словом или советом — это уже протянуть руку помощи.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+                <div class="media block-6 d-flex services p-3 py-4 d-block">
+                    <div class="icon d-flex mb-3"><span class="flaticon-donation"></span></div>
+                    <div class="media-body pl-4">
+                        <h3 class="heading">Партнерство</h3>
+                        <p>Объединяя общественные организации, независимых спонсоров,государственную помощь-мы создаем крепкий тыл и большие возможности.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">Последние пожертвования</h2>
+                <p>Мы благодарим Вас за помощь и поддержку которую Вы оказываете.</p>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.Donations)
+            {
+
+                <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
+                    <div class="staff">
+                        <div class="d-flex mb-4">
+                            <div class="img" style="background-image: url(@item.Image);"></div>
+                            <div class="info ml-4">
+                                <h3><a href="teacher-single.html">@item.FirstName   @item.LastName</a></h3>
+                                <span class="position">@item.Date</span>
+                                <div class="text">
+                                    <p>Может помочь <span>@item.Theme</span> <span>@item.Title</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            }
+        </div>
+
+    </div>
+</section>
+
+<section class="ftco-gallery">@*Carussel*@
+    
+    @for (int i = 0; i < Model.Pictures.Count;)
+    {
+        <div class="d-md-flex">@*row*@
+        @for (int j = 0; j < 4&& i < Model.Pictures.Count; j++, i++)
+        {
+            <a href="@Model.Pictures[i]" class="gallery image-popup d-flex justify-content-center align-items-center img ftco-animate" style="background-image: url(@Model.Pictures[i]);"  >
+               
+               
+                <div class="icon d-flex justify-content-center align-items-center">
+                    <span class="icon-search"></span>
+                </div>
+            </a>
+        }
+        </div>
+    }
+   
+</section>
+
+
+<section class="ftco-section">
+   
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-7 heading-section ftco-animate text-center">
+                <h2 class="mb-4">Последние добавленные посты</h2>
+                <p>Будьте в курсе всех новых постов в блогах наших пользателей! </p>
+            </div>
+        </div>
+  
+        <div class="row d-flex">
+            
+                @foreach(var item in Model.Posts)
+                {
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry align-self-stretch">
+
+                            <a href="blog-single.html" class="block-20" style="background-image: url('@item.Image');">
+                            </a>
+                            <div class="text p-4 d-block">
+                                <div class="meta mb-3">
+                                    <div><a href="#">@item.Date</a></div>
+                                    <div><a href="#">@item.User.FirstName @item.User.LastName</a></div>
+                                    <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                                </div>                             
+                                <h3 class="" heading mt-3">@Html.ActionLink(item.Title, "Details", "Posts", new { id = item.PostId },  null  )</h3>                                   <p>@item.Text.ToString().Substring(0, 200)<span>...</span></p>
+</div>                                        
+                        </div>
+                    </div>
+                 }
+            
+
+                        
+                  
+
+        </div>
+    
+        </div >
+   
+</section>
+
+
+<section id="volonteer" class="ftco-section-3 img" style="background-image: url(/Content/images/bg_3.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row d-md-flex">
+            <div class="col-md-6 d-flex ftco-animate">
+                <div class="img img-2 align-self-stretch" style="background-image: url(/Content/images/bg_4.jpg);"></div>
+            </div>
+            <div class="col-md-6 volunteer pl-md-5 ftco-animate">
+                <h3 class="mb-3">Стать Волонтером</h3>
+            @using (Html.BeginForm("CreateVolonteer", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
+            {
+                @Html.AntiForgeryToken()
+
+               
+
+                if (this.Session["IsAuth"] != null&&(bool)this.Session["IsAuth"]==true)
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Volonteer.UserId)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Volonteer.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Volonteer.Message, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Volonteer.Message, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Отправить сообщение" class="btn btn-white py-3 px-5">
+                    </div>
+                }
+                if (this.Session["IsAuth"] == null )
+                {
+                    <div class="form-group">
+                        
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Volonteer.FirstName, htmlAttributes: new {@class = "control-label col-md-2"})
+                            @Html.EditorFor(model => model.Volonteer.FirstName, new {htmlAttributes = new {@class = "form-control"}})
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Volonteer.Email, htmlAttributes: new {@class = "control-label col-md-2"})
+                            @Html.EditorFor(model => model.Volonteer.Email, new {htmlAttributes = new {@class = "form-control"}})
+                            @Html.ValidationMessageFor(model => model.Volonteer.Email, "", new {@class = "text-danger"})
+                        </div>
+                        @Html.LabelFor(model => model.Volonteer.Message, htmlAttributes: new {@class = "control-label col-md-2"})
+                        @Html.EditorFor(model => model.Volonteer.Message, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.Volonteer.Message, "", new {@class = "text-danger"})
+                    </div>
+                <div class="form-group">
+                    <input type="submit" value="Отправить сообщение" class="btn btn-white py-3 px-5">
+                </div>
+                }
+            }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+

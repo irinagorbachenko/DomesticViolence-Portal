@@ -1,0 +1,230 @@
+﻿@using DomesticViolencePortal.Models.ViewModels
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stop Domestic Violence</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="~/Content/css/fontsDosis.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,400i,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Content/css/aos.css">
+    <link rel="stylesheet" href="~/Content/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Content/css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="~/Content/css/flaticon.css">
+    <link rel="stylesheet" href="~/Content/css/icomoon.css">
+    <link rel="stylesheet" href="~/Content/css/style.css">
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="/Home/Index" class="nav-link">Главная</a></li>
+                    <li class="nav-item"><a href="/Home/About" class="nav-link">О Нас</a></li>
+                    <li class="nav-item"><a href="/Donations/Index" class="nav-link">Помочь</a></li>
+                    <li class="nav-item"><a href="/NeedHelpUsers/Index" class="nav-link">Мне нужна помощь</a></li>
+                    <li class="nav-item"><a href="/Home/Chat" class="nav-link">Онлайн помощь психолога</a></li>
+                    <li class="nav-item"><a href="/Posts/Index" class="nav-link">Блоги</a></li>
+
+
+                    <li class="nav-item"><a href="/Gallery/Index" class="nav-link">Галерея</a></li>
+                    <li class="nav-item"><a href="/SOS/Index" class="nav-link">Экстренные контакты и центры</a></li>
+                    <li class="nav-item"><a href="/Home/Contact" class="nav-link">Наши контакты</a></li>
+                    @if (this.Session["IsAuth"] != null && (bool)this.Session["IsAuth"])
+                    {
+                        <li class="nav-item"><a href="#" class="nav-link"> @this.Session["Auth"]</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"> @(((UserRegister)this.Session["Authorization"]).Login)</a></li>
+                        <li class="nav-item"><a href="/Account/LogOff" class="nav-link">Выйти</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a href="/Account/Login" class="nav-link">Войти</a></li>
+                        <li class="nav-item"><a href="/Account/Register" class="nav-link">Регистрация</a></li>
+                    }
+
+
+
+                    @*@if (this.Session["IsAuth"] != null && (bool)this.Session["IsAuth"])
+        {*@
+
+
+                    @*if (((UserRegister)this.Session["Authorization"]).Role == null)
+        {
+
+
+        }
+        else if (((UserRegister)this.Session["Authorization"]).Role.ToLower() == "Admin")
+        {
+            <li class="nav-item"><a href="/Account/Login" class="nav-link">Вы АДМИН!!!!!</a></li>
+        }
+        else
+        {
+            <li class="nav-item"><a href="/Account/Login" class="nav-link">Вы Юзер!!!!</a></li>
+        }*@
+
+
+
+
+
+
+                    @if (this.Session["IsAuth"] != null && (bool)this.Session["IsAuth"] == true)
+                    {
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Мой Профиль
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="/Account/PersonalCabinet">Кабинет пользователя</a>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @*<div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                    <li>@Html.ActionLink("О нас", "About", "Home")</li>
+                    <li>@Html.ActionLink("Наши контакты", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Чат с психологом", "Chat", "Home")</li>
+
+                    <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>
+                    <li>@Html.ActionLink("Войти", "Login", "Account")</li>
+                    <li>@Html.ActionLink("Выйти", "LogOff", "Account")</li>
+
+
+
+                </ul>
+            </div>
+        </div>*@
+    @*</div>*@
+    @* ===================================Render body=================================== *@
+
+    @RenderBody()
+    @* ===================================Render body=================================== *@
+
+
+    <footer class="ftco-footer ftco-section img">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">О нас </h2>
+                        <p>Портал помощи жертвам домашнего насилия.</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                            <li class="ftco-animate"><a href="https://twitter.com/?lang=ru"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.facebook.com/"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.instagram.com/?hl=ru"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Недавние блоги</h2>
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image: url(/Content/images/image_1.jpg);"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="#">Оглянитесь вокруг. Возможно, близкий человек нуждается в вашей поддержке </a></h3>
+                                <div class="meta">
+                                    <div><a href="#"><span class="icon-calendar"></span> Июль 12, 2019</a></div>
+                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image: url(/Content/images/image_2.jpg);"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="#">Организация сбора обуви</a></h3>
+                                <div class="meta">
+                                    <div><a href="#"><span class="icon-calendar"></span> Июль 12, 2019</a></div>
+                                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="ftco-footer-widget mb-4 ml-md-4">
+                        <h2 class="ftco-heading-2">Навигация по сайту</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="/Home/Index" class="py-2 d-block">Главная</a></li>
+                            <li><a href="/Home/About" class="py-2 d-block">О Нас</a></li>
+                            <li><a href="/Home/Chat" class="py-2 d-block">Онлайн помощь психолога</a></li>
+                            <li><a href="/Posts/Index" class="py-2 d-block">Блоги</a></li>
+                            <li><a href="/Account/Register" class="py-2 d-block">Регистрация</a></li>
+                            <li> <a href="/Account/Login" class="py-2 d-block">Войти</a></li>
+                            <li><a href="/Home/Contact" class="py-2 d-block">Наши контакты</a></li>
+                            @*<li><a href="/Account/LogOff" class="py-2 d-block">Выйти</a></li>*@
+                            <li><a href="/Donate/Index" class="py-2 d-block">Помочь</a></li>                           
+                            <li><a href="gallery.html" class="py-2 d-block">Галерея</a></li>
+                            <li><a href="/SOS/Index" class="py-2 d-block">Экстренные номера и адреса в городе Харьков</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Хотите задать вопрос?</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">203 Рандомная улица , Харьков, Харьковская область, Украина</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+
+                </div>
+            </div>
+        </div>
+    </footer>
+    loader
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/Content/js/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.easing.1.3.js"></script>
+    <script src="~/Content/js/jquery.waypoints.min.js"></script>
+    <script src="~/Content/js/jquery.stellar.min.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/aos.js"></script>
+    <script src="~/Content/js/jquery.animateNumber.min.js"></script>
+    <script src="~/Content/js/bootstrap-datepicker.js"></script>
+    <script src="~/Content/js/jquery.timepicker.min.js"></script>
+    <script src="~/Content/js/scrollax.min.js"></script>
+   
+    <script src="~/Content/js/google-map.js"></script>
+    <script src="~/Content/js/main.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

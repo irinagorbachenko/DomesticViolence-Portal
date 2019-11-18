@@ -1,0 +1,242 @@
+﻿@using DomesticViolencePortal.Models.ViewModels
+
+@model DomesticViolencePortal.Models.User
+@{
+    ViewBag.Title = "Cabinet";
+    ViewBag.Layout = null;
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-sm-10"><h1>@Model.FirstName</h1><h1>@Model.LastName</h1></div>
+            
+        </div>
+  
+        <div class="row">
+            <div class="col-sm-3">
+                
+                
+                <!--left col-->
+                @using (Html.BeginForm("UpoladPictures", "Account", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                {
+                    if (Session["IsAuth"] != null && (bool) Session["IsAuth"])
+                    {
+                <div class="text-center">
+                    <img src="@Model.Image" class="avatar img-circle img-thumbnail" alt="avatar" name="Image">
+                    <h6>Загрузить фото...</h6>
+                    <input type="file" class="text-center center-block file-upload" name="uploadImage">
+                    <input type="submit" value="Добавить" class="btn btn-default" />
+                   
+                </div>
+
+                
+                        
+
+                    }
+                    if (this.Session["IsAuth"] == null)
+                    {
+                        <div class="text-center">
+                            <img src="@Model.Image" class="avatar img-circle img-thumbnail" alt="avatar" name="Image">
+                            <h6>Загрузить фото...</h6>
+                            <input type="file" class="text-center center-block file-upload" name="uploadImage">
+                            <input type="submit" value="Добавить" cclass="text-center center-block file-upload" />
+                   
+                        </div>
+                    }
+                }
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
+                    <div class="panel-body"><a href="http://yoursite.com">http://yoursite.com</a></div>
+                </div>
+
+
+                <ul class="list-group">
+                    <li class="nav-item">
+
+
+                        @if (this.Session["IsAdmin"] != null && (bool)this.Session["IsAdmin"] == true)
+                        {
+                            @Html.ActionLink("Пользователи", "Index", "Users", new { @class = "elements" }, null)<br>
+                            @Html.ActionLink("Посты", "IndexForAdmins", "Posts", new { @class = "elements" }, null)<br>
+                            @Html.ActionLink("Комментарии", "Index", "Comments", new { @class = "elements" }, null)<br>
+                            @Html.ActionLink("Волонтеры", "Index", "Volonteers", new { @class = "elements" }, null)<br>
+                            @Html.ActionLink("Сообщения", "Index", "Questions", new { @class = "elements" }, null)<br>
+                            @Html.ActionLink("Объявления помочь", "IndexForAdmin", "Donations", new { @class = "elements" }, null)<br>
+                            @Html.ActionLink("Объявления нужна помочь", "IndexForAdmin", "NeedHelpUsers", new { @class = "elements" }, null)<br>
+
+
+
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Мои Посты", "IndexUser", "Posts", new { id = (int)this.Session["CurrentUser"]}, null )<br>
+                            @Html.ActionLink("Мои Обьявления", "Index", "Donations", new { id = (int)this.Session["CurrentUser"]}, null )<br>
+
+                    <p>
+                        @Html.ActionLink("Создать новый пост", "CreateForUser", "Posts")
+                    </p>
+                }
+
+                       
+
+                    </li>
+                    <li class="list-group-item text-muted">Активность <i class="fa fa-dashboard fa-1x"></i></li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Посты</strong></span> @Model.Posts.Count</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Комментарии</strong></span> @Model.Comments.Count</li>
+                </ul>
+
+                <
+
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Информация</a></li>
+                    
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <hr>
+                        @using (Html.BeginForm("EditUser", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Image)
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.UserId)
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Login.Id)
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.LoginId)
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.RoleId)
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="first_name"><h4>Имя</h4></label>
+                                    <input type="text" value="@Model.FirstName" class="form-control" name="FirstName" id="FirstName" placeholder="first name" title="enter your first name if any.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="last_name"><h4>Фамилия</h4></label>
+                                    <input type="text" value="@Model.LastName" class="form-control" name="LastName" id="LastName" placeholder="last name" title="enter your last name if any.">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="email"><h4></h4></label>
+                                    <input type="email" value="@Model.Email" class="form-control" name="Email" id="Email" placeholder="you@email.com" title="enter your email.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="location"><h4>Логин</h4></label>
+                                    <input type="text" value="@Model.Login.UserLogin" class="form-control" name="Login.UserLogin" id="Login.UserLogin" placeholder="somewhere" title="enter a location">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="password"><h4>Cменить пароль</h4></label>
+                                    <input type="text"  class="form-control" name="Password" id="Password" placeholder="password" title="enter your password.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="password2"><h4>Подтвердить</h4></label>
+                                    <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button id="EditPerson" class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Сохранить</button>
+
+                                </div>
+                            </div>
+                        }
+
+                        <hr>
+                    </div>
+                    </div><!--/tab-pane-->
+                    <div class="tab-pane" id="messages">
+
+                      
+
+                </div><!--/tab-pane-->
+            </div><!--/tab-content-->
+        </div><!--/col-9-->
+    </div><!--/row-->
+<script>
+    $(document).ready(function () {
+
+
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+    });
+</script>
+
+
+<script type = "text/javascript" >
+    {
+        let change = document.getElementsById("EditPerson");
+        for (let i = 0; i < change.length; i++) {
+
+
+            change[i].onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                let a = e.currentTarget.getAttribute("id");
+               
+                $.post("UploadPictures", { filePath: galleryPath })
+                location.reload();
+            }
+        }
+    }
+
+
+
+
+</script>
+</body>

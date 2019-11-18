@@ -1,0 +1,30 @@
+﻿@model IEnumerable<DomesticViolencePortal.Models.Post>
+
+
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PostId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PostId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PostId })
+        </td>
+    </tr>
+}
+
+</table>
